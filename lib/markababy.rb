@@ -11,7 +11,11 @@ module Markababy
     end
 
     def method_missing(sym, *args, &block)
-      @output << "<#{sym}>"
+      if args.empty?
+        @output << "<#{sym}>"
+      else
+        @output << "<#{sym}>#{args.join}</#{sym}>"
+      end
     end
   end
 end
