@@ -1,24 +1,36 @@
 require 'cgi'
 
 module Markababy
-  def self.capture(&block)
-    [].tap { |output| markup(output, &block) }.join
+  def self.capture(options = {}, &block)
+    [].tap { |output| markup(options.merge(output: output), &block) }.join
   end
 
-  def self.markup(output = $stdout, &block)
-    Builder.new(output, CGI.method(:escapeHTML), &block)
+  def self.markup(options = {}, &block)
+    options[:escape] = CGI.method(:escapeHTML)
+
+    options[:output] = $stdout unless options.has_key?(:output)
+
+    Builder.new(options, &block)
   end
 
   class Builder < BasicObject
-    def initialize(output, escape, &block)
-      @output = output
+    def initialize(options, &block)
+      @options = options
 
-      @escape = escape
+      @output = @options[:output]
+
+      @escape = @options[:escape]
+
+      @context = @options[:context]
 
       instance_eval(&block)
     end
 
     def method_missing(sym, *args, &block)
+      if !@context.nil? && @context.respond_to?(sym)
+        return @context.send(sym, *args, &block)
+      end
+
       attributes, content = [], []
 
       args.flatten.each do |arg|

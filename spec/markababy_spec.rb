@@ -1,6 +1,12 @@
 require 'minitest/autorun'
 require 'markababy'
 
+class ExampleContext
+  def baconize(word)
+    "#{word} bacon!"
+  end
+end
+
 describe Markababy do
   it 'should render tags without attributes or content correctly' do
     Markababy.capture { br }.must_equal '<br>'
@@ -33,8 +39,14 @@ describe Markababy do
   it 'should allow output target to be specified' do
     output = []
 
-    Markababy.markup(output) { hr }
+    Markababy.markup(output: output) { hr }
 
     output.join.must_equal '<hr>'
+  end
+
+  it 'should allow context for method lookup to be specified' do
+    output = Markababy.capture(context: ExampleContext.new) { h1 baconize('Super chunky') }
+
+    output.must_equal '<h1>Super chunky bacon!</h1>'
   end
 end
