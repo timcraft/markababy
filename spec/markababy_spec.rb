@@ -21,4 +21,8 @@ describe Markababy do
   it 'should render tags with an attribute array correctly' do
     Markababy.capture { input [{type: :text}, :disabled] }.must_equal '<input type="text" disabled>'
   end
+
+  it 'should render tags with attributes and content correctly' do
+    Markababy.capture { div 'O hai', class: 'name' }.must_equal '<div class="name">O hai</div>'
+  end
 end
