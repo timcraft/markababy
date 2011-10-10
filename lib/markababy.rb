@@ -2,7 +2,11 @@ require 'cgi'
 
 module Markababy
   def self.capture(&block)
-    [].tap { |output| Builder.new(output, CGI.method(:escapeHTML), &block) }.join
+    [].tap { |output| markup(output, &block) }.join
+  end
+
+  def self.markup(output = $stdout, &block)
+    Builder.new(output, CGI.method(:escapeHTML), &block)
   end
 
   class Builder < BasicObject

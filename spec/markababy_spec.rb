@@ -29,4 +29,12 @@ describe Markababy do
   it 'should render nested tags correctly' do
     Markababy.capture { h1 { span 'Chunky bacon!' } }.must_equal '<h1><span>Chunky bacon!</span></h1>'
   end
+
+  it 'should allow output target to be specified' do
+    output = []
+
+    Markababy.markup(output) { hr }
+
+    output.join.must_equal '<hr>'
+  end
 end
