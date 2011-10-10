@@ -15,12 +15,24 @@ module Markababy
     end
 
     def method_missing(sym, *args, &block)
-      if args.empty?
+      attributes, content = [], []
+
+      args.each do |arg|
+        if arg.respond_to?(:to_hash)
+          arg.each { |k, v| attributes << ' %s="%s"' % [@escape[k.to_s], @escape[v.to_s]] }
+        else
+          content << @escape[arg.to_s]
+        end
+      end
+
+      if attributes.empty?
         @output << "<#{sym}>"
       else
-        content = args.map { |arg| @escape[arg] }.join
+        @output << "<#{sym}#{attributes.join}>"
+      end
 
-        @output << "<#{sym}>#{content}</#{sym}>"
+      unless content.empty?
+        @output << "#{content.join}</#{sym}>"
       end
     end
   end
