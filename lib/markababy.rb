@@ -34,7 +34,15 @@ module Markababy
       end
 
       unless content.empty?
-        @output << "#{content.join}</#{sym}>"
+        @output << content.join
+      end
+
+      unless block.nil?
+        instance_eval(&block)
+      end
+
+      unless content.empty? && block.nil?
+        @output << "</#{sym}>"
       end
     end
   end

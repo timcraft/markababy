@@ -25,4 +25,8 @@ describe Markababy do
   it 'should render tags with attributes and content correctly' do
     Markababy.capture { div 'O hai', class: 'name' }.must_equal '<div class="name">O hai</div>'
   end
+
+  it 'should render nested tags correctly' do
+    Markababy.capture { h1 { span 'Chunky bacon!' } }.must_equal '<h1><span>Chunky bacon!</span></h1>'
+  end
 end
