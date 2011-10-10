@@ -17,4 +17,8 @@ describe Markababy do
   it 'should render tags with an attribute hash correctly' do
     Markababy.capture { input type: :text, size: 40 }.must_equal '<input type="text" size="40">'
   end
+
+  it 'should render tags with an attribute array correctly' do
+    Markababy.capture { input [{type: :text}, :disabled] }.must_equal '<input type="text" disabled>'
+  end
 end
