@@ -1,11 +1,15 @@
+require 'cgi'
+
 module Markababy
   def self.capture(&block)
-    [].tap { |output| Builder.new(output, &block) }.join
+    [].tap { |output| Builder.new(output, CGI.method(:escapeHTML), &block) }.join
   end
 
   class Builder < BasicObject
-    def initialize(output, &block)
+    def initialize(output, escape, &block)
       @output = output
+
+      @escape = escape
 
       instance_eval(&block)
     end
@@ -14,7 +18,9 @@ module Markababy
       if args.empty?
         @output << "<#{sym}>"
       else
-        @output << "<#{sym}>#{args.join}</#{sym}>"
+        content = args.map { |arg| @escape[arg] }.join
+
+        @output << "<#{sym}>#{content}</#{sym}>"
       end
     end
   end
