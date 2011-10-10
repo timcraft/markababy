@@ -61,5 +61,9 @@ module Markababy
         @output << "</#{sym}>"
       end
     end
+
+    def text(content)
+      @output << @escape[content.to_s]
+    end
   end
 end

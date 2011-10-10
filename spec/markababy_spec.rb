@@ -49,4 +49,10 @@ describe Markababy do
 
     output.must_equal '<h1>Super chunky bacon!</h1>'
   end
+
+  it 'should provide a method for rendering text content' do
+    output = Markababy.capture { h1 { text 'Hello '; strong 'World' } }
+
+    output.must_equal '<h1>Hello <strong>World</strong></h1>'
+  end
 end
