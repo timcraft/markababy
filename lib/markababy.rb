@@ -43,23 +43,13 @@ module Markababy
         end
       end
 
-      if attributes.empty?
-        @output << "<#{sym}>"
-      else
-        @output << "<#{sym}#{attributes.join}>"
-      end
+      @output << (attributes.empty? ? "<#{sym}>" : "<#{sym}#{attributes.join}>")
 
-      unless content.empty?
-        @output << content.join
-      end
+      @output << content.join unless content.empty?
 
-      unless block.nil?
-        instance_eval(&block)
-      end
+      instance_eval(&block) unless block.nil?
 
-      unless content.empty? && block.nil?
-        @output << "</#{sym}>"
-      end
+      @output << "</#{sym}>" unless content.empty? && block.nil?
     end
 
     def text(content)
