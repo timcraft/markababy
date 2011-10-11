@@ -13,13 +13,15 @@ class DummyController < AbstractController::Base
   self.view_paths = 'spec/views'
 
   def index
+    @message = 'Controller says hello!'
+
     render template: 'index'
   end
 end
 
 describe DummyController do
   it 'should return the correct markup' do
-    output = '<html><head><title>Hey!</title><p>12,345,678</p></head></html>'
+    output = '<html><head><title>Controller says hello!</title><p>12,345,678</p></head></html>'
 
     DummyController.new.index.must_equal output
   end

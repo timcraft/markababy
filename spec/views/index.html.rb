@@ -1,6 +1,6 @@
 html {
   head {
-    title 'Hey!'
+    title message
 
     p number_with_delimiter(12345678)
   }
