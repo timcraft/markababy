@@ -1,3 +1,4 @@
+require 'markababy'
 require 'action_view'
 
 module Markababy
