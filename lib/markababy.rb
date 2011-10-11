@@ -10,6 +10,8 @@ module Markababy
 
     options[:output] = $stdout unless options.has_key?(:output)
 
+    options[:output] << "<!DOCTYPE html>\n" if options[:doctype]
+
     Builder.new(options, &block)
   end
 

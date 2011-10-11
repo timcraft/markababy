@@ -64,4 +64,10 @@ describe Markababy do
 
     output.must_equal '<h1>Hello <strong>World</strong></h1>'
   end
+
+  it 'should provide an option for including a doctype declaration' do
+    output = Markababy.capture(doctype: true) { html { body { p 'INSERT CONTENT HERE' } } }
+
+    output.must_equal "<!DOCTYPE html>\n<html><body><p>INSERT CONTENT HERE</p></body></html>"
+  end
 end
