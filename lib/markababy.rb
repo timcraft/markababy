@@ -38,6 +38,8 @@ module Markababy
           arg.to_hash.each { |k, v| attributes << ' %s="%s"' % [@escape[k.to_s], @escape[v.to_s]] }
         elsif arg.respond_to?(:id2name)
           attributes << ' %s' % @escape[arg.to_s]
+        elsif arg.respond_to?(:html_safe?) && arg.html_safe?
+          content << arg.to_s
         else
           content << @escape[arg.to_s]
         end
@@ -53,7 +55,11 @@ module Markababy
     end
 
     def text(content)
-      @output << @escape[content.to_s]
+      if content.respond_to?(:html_safe?) && content.html_safe?
+        @output << content.to_s
+      else
+        @output << @escape[content.to_s]
+      end
     end
   end
 end

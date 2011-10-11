@@ -1,5 +1,6 @@
 require 'minitest/autorun'
 require 'markababy'
+require 'active_support/core_ext/string/output_safety'
 
 class ExampleContext
   def baconize(word)
@@ -52,6 +53,14 @@ describe Markababy do
 
   it 'should provide a method for rendering text content' do
     output = Markababy.capture { h1 { text 'Hello '; strong 'World' } }
+
+    output.must_equal '<h1>Hello <strong>World</strong></h1>'
+  end
+
+  it 'should respect the html_safe? method' do
+    Markababy.capture { text 'Hello&nbsp;World'.html_safe }.must_equal 'Hello&nbsp;World'
+
+    output = Markababy.capture { h1 'Hello <strong>World</strong>'.html_safe }
 
     output.must_equal '<h1>Hello <strong>World</strong></h1>'
   end
