@@ -11,9 +11,13 @@ module Markababy
 
     options[:output] = $stdout unless options.has_key?(:output)
 
-    options[:output] << "<!DOCTYPE html>\n" if options[:doctype]
+    options[:output] << doctype if options[:doctype]
 
     Builder.new(options, &block)
+  end
+
+  def self.doctype
+    @doctype ||= "<!DOCTYPE html>\n".freeze
   end
 
   if defined?(Rails)
