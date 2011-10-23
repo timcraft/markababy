@@ -1,7 +1,12 @@
 require 'minitest/autorun'
-require 'abstract_controller'
+require 'rails/all'
 require 'markababy'
-require 'markababy/rails'
+
+class DummyApplication < Rails::Application
+  config.active_support.deprecation = :log
+end
+
+DummyApplication.initialize!
 
 class DummyController < AbstractController::Base
   # cf. http://amberbit.com/blog/render-views-partials-outside-controllers-rails-3

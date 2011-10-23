@@ -64,4 +64,10 @@ module Markababy
       end
     end
   end
+
+  if defined?(Rails)
+    require 'markababy/rails_template_context'
+    require 'markababy/rails_template_handler'
+    require 'markababy/railtie'
+  end
 end
