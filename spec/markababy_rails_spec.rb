@@ -26,7 +26,7 @@ end
 
 describe DummyController do
   it 'should return the correct markup' do
-    output = '<html><head><title>Controller says hello!</title><p>12,345,678</p></head></html>'
+    output = '<html><head><title>Controller says hello!</title></head><body><p>12,345,678</p></body></html>'
 
     DummyController.new.index.must_equal output
   end
