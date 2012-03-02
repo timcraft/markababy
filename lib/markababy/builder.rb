@@ -47,5 +47,9 @@ module Markababy
         @output << @escape[content.to_s]
       end
     end
+
+    def self.const_missing(name)
+      ::Object.const_get(name)
+    end
   end
 end

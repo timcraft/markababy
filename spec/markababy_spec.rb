@@ -70,4 +70,10 @@ describe Markababy do
 
     output.must_equal "<!DOCTYPE html>\n<html><body><p>INSERT CONTENT HERE</p></body></html>"
   end
+
+  it 'should provide access to constants' do
+    Something = Class.new
+
+    Markababy.capture { h1 Something }.must_equal('<h1>Something</h1>')
+  end
 end
