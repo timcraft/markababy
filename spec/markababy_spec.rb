@@ -22,15 +22,15 @@ describe Markababy do
   end
 
   it 'should render tags with an attribute hash correctly' do
-    Markababy.capture { input type: :text, size: 40 }.must_equal '<input type="text" size="40">'
+    Markababy.capture { input :type => :text, :size => 40 }.must_equal '<input type="text" size="40">'
   end
 
   it 'should render tags with an attribute array correctly' do
-    Markababy.capture { input [{type: :text}, :disabled] }.must_equal '<input type="text" disabled>'
+    Markababy.capture { input [{:type => :text}, :disabled] }.must_equal '<input type="text" disabled>'
   end
 
   it 'should render tags with attributes and content correctly' do
-    Markababy.capture { div 'O hai', class: 'name' }.must_equal '<div class="name">O hai</div>'
+    Markababy.capture { div 'O hai', :class => 'name' }.must_equal '<div class="name">O hai</div>'
   end
 
   it 'should render nested tags correctly' do
@@ -40,13 +40,13 @@ describe Markababy do
   it 'should allow output target to be specified' do
     output = []
 
-    Markababy.markup(output: output) { hr }
+    Markababy.markup(:output => output) { hr }
 
     output.join.must_equal '<hr>'
   end
 
   it 'should allow context for method lookup to be specified' do
-    output = Markababy.capture(context: ExampleContext.new) { h1 baconize('Super chunky') }
+    output = Markababy.capture(:context => ExampleContext.new) { h1 baconize('Super chunky') }
 
     output.must_equal '<h1>Super chunky bacon!</h1>'
   end
@@ -66,7 +66,7 @@ describe Markababy do
   end
 
   it 'should provide an option for including a doctype declaration' do
-    output = Markababy.capture(doctype: true) { html { body { p 'INSERT CONTENT HERE' } } }
+    output = Markababy.capture(:doctype => true) { html { body { p 'INSERT CONTENT HERE' } } }
 
     output.must_equal "<!DOCTYPE html>\n<html><body><p>INSERT CONTENT HERE</p></body></html>"
   end

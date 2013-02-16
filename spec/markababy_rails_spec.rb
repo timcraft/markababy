@@ -20,7 +20,7 @@ class DummyController < AbstractController::Base
   def index
     @message = 'Controller says hello!'
 
-    render template: 'index'
+    render :template => 'index'
   end
 end
 

@@ -3,7 +3,7 @@ require 'cgi'
 
 module Markababy
   def self.capture(options = {}, &block)
-    [].tap { |output| markup(options.merge(output: output), &block) }.join
+    [].tap { |output| markup(options.merge(:output => output), &block) }.join
   end
 
   def self.markup(options = {}, &block)

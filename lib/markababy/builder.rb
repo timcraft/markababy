@@ -1,3 +1,11 @@
+unless defined?(BasicObject)
+  require 'backports/basic_object'
+
+  class BasicObject
+    undef_method :p
+  end
+end
+
 module Markababy
   class Builder < BasicObject
     def initialize(options, &block)
@@ -12,8 +20,18 @@ module Markababy
       instance_eval(&block)
     end
 
+    if ::Object.new.respond_to?(:respond_to_missing?)
+      def context_responds_to?(name)
+        @context.respond_to?(name)
+      end
+    else
+      def context_responds_to?(name)
+        @context.respond_to?(name) || (@context.respond_to?(:respond_to_missing?) && @context.respond_to_missing?(name))
+      end
+    end
+
     def method_missing(sym, *args, &block)
-      if !@context.nil? && @context.respond_to?(sym)
+      if @context && context_responds_to?(sym)
         return @context.send(sym, *args, &block)
       end
 

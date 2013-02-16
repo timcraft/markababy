@@ -10,4 +10,12 @@ Gem::Specification.new do |s|
   s.files = Dir.glob('{lib,spec}/**/*') + %w(README.md Rakefile markababy.gemspec)
   s.add_development_dependency('rails', ['>= 3.0.3'])
   s.require_path = 'lib'
+
+  unless defined?(BasicObject)
+    s.add_dependency('backports', '~> 2.8.2')
+  end
+
+  if RUBY_VERSION == '1.8.7'
+    s.add_development_dependency('minitest', '>= 4.2.0')
+  end
 end
