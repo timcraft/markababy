@@ -22,7 +22,11 @@ describe Markababy do
   end
 
   it 'should render tags with an attribute hash correctly' do
-    Markababy.capture { input :type => :text, :size => 40 }.must_equal '<input type="text" size="40">'
+    output = Markababy.capture { input :type => :text, :size => 40 }
+
+    output.must_match(/<input .+>/)
+    output.must_match(/ type="text"/)
+    output.must_match(/ size="40"/)
   end
 
   it 'should render tags with an attribute array correctly' do
