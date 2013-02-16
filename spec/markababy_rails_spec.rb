@@ -24,10 +24,10 @@ class DummyController < AbstractController::Base
   end
 end
 
-describe DummyController do
-  it 'should return the correct markup' do
+describe 'Rendering the DummyController index template' do
+  it 'returns the correct markup' do
     output = '<html><head><title>Controller says hello!</title></head><body><p>12,345,678</p></body></html>'
 
-    DummyController.new.index.must_equal output
+    DummyController.new.index.must_equal(output)
   end
 end
