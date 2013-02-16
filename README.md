@@ -1,5 +1,11 @@
-Markababy: Markaby's little sister
-==================================
+Markaby's little sister
+=======================
+
+
+Installation
+------------
+
+    $ gem install markababy
 
 
 Example
