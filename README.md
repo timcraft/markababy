@@ -1,5 +1,8 @@
-Markaby's little sister
-=======================
+markababy
+=========
+
+
+Markaby's little sister. A small library for writing HTML in Ruby.
 
 
 Installation
@@ -32,8 +35,8 @@ Markababy.markup do
 end
 ```
 
-Use `Markababy.capture` if you want to capture the output as a string
-instead of printing it to `$stdout`.
+Use `Markababy.capture` instead of `Markababy.markup` if you want to capture
+the output as a string instead of printing it to STDOUT.
 
 
 Rails template usage
