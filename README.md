@@ -1,18 +1,15 @@
-markababy
-=========
+# markababy
 
 
 Markaby's little sister. A small library for writing HTML in Ruby.
 
 
-Installation
-------------
+## Installation
 
     $ gem install markababy
 
 
-Example
--------
+## Example
 
 Usage is similar to [Markaby](http://en.wikipedia.org/wiki/Markaby),
 and easy to use directly from a Ruby script:
@@ -39,8 +36,7 @@ Use `Markababy.capture` instead of `Markababy.markup` if you want to capture
 the output as a string instead of printing it to STDOUT.
 
 
-Rails template usage
---------------------
+## Rails template usage
 
 To use Markababy within a Rails 3 app: add markababy as a dependency to your
 Gemfile; do the bundle dance; then change the extension on your template files
@@ -48,8 +44,7 @@ from .erb to .rb and you can start writing your templates in Ruby! Controller
 instance variables and helpers will be available as methods.
 
 
-Less is more
-------------
+## Less is more
 
 Some differences from Markaby:
 
