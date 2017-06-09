@@ -38,10 +38,11 @@ the output as a string instead of printing it to STDOUT.
 
 ## Rails template usage
 
-To use Markababy within a Rails 3 app: add markababy as a dependency to your
-Gemfile; do the bundle dance; then change the extension on your template files
-from .erb to .rb and you can start writing your templates in Ruby! Controller
-instance variables and helpers will be available as methods.
+Add markababy as a dependency to your Gemfile; do the bundle dance; then change
+the extension on your template files from .erb to .rb and you can start writing
+your templates in Ruby!
+
+Controller instance variables and helpers will be available as methods.
 
 
 ## Less is more
