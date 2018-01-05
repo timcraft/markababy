@@ -1,5 +1,7 @@
 # markababy
 
+[![Gem Version](https://badge.fury.io/rb/markababy.svg)](https://badge.fury.io/rb/markababy) [![Build Status](https://api.travis-ci.org/timcraft/markababy.svg?branch=master)](https://travis-ci.org/timcraft/markababy)
+
 
 Markaby's little sister. A small library for writing HTML in Ruby.
 
