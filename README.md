@@ -34,7 +34,7 @@ Markababy.markup do
 end
 ```
 
-Use `Markababy.capture` instead of `Markababy.markup` if you want to capture
+Use `Markababy.capture` if you want to capture
 the output as a string instead of printing it to STDOUT.
 
 
@@ -55,3 +55,10 @@ Some differences from Markaby:
 * No element classes or IDs
 * No validation
 * No XHTML
+
+
+## Alternatives
+
+* https://github.com/timcraft/hom
+* https://github.com/judofyr/tubby
+* https://github.com/digital-fabric/rubyoshka
