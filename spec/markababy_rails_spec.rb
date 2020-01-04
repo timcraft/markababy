@@ -1,5 +1,7 @@
 require 'minitest/autorun'
-require 'rails/all'
+require 'rails'
+require 'action_controller/railtie'
+require 'action_view/railtie'
 require 'markababy'
 
 class DummyApplication < Rails::Application
@@ -19,6 +21,6 @@ describe 'Rendering the DummyController index template' do
 
     output = '<html><head><title>Controller says hello!</title></head><body><p>12,345,678</p></body></html>'
 
-    DummyController.render(:file => :index, :assigns => assigns).must_equal(output)
+    DummyController.render(file: 'index', assigns: assigns).must_equal(output)
   end
 end
