@@ -12,6 +12,6 @@ Gem::Specification.new do |s|
   s.required_ruby_version = '>= 1.9.3'
   s.add_development_dependency('rake', '>= 12')
   s.add_development_dependency('rails', '~> 5')
-  s.add_development_dependency('minitest', '~> 5')
+  s.add_development_dependency('minitest', '5.11.0')
   s.require_path = 'lib'
 end
