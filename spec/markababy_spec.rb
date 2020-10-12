@@ -1,4 +1,5 @@
 require 'minitest/autorun'
+require 'minitest/global_expectations'
 require 'markababy'
 require 'active_support/core_ext/string/output_safety'
 
