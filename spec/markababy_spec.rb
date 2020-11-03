@@ -1,5 +1,3 @@
-require 'minitest/autorun'
-require 'minitest/global_expectations'
 require 'markababy'
 require 'active_support/core_ext/string/output_safety'
 
@@ -9,37 +7,37 @@ class ExampleContext
   end
 end
 
-describe 'Markababy' do
+RSpec.describe 'Markababy.capture' do
   it 'renders tags without attributes or content' do
-    Markababy.capture { br }.must_equal '<br>'
+    expect(Markababy.capture { br }).to eq('<br>')
   end
 
   it 'renders tags with content' do
-    Markababy.capture { title 'Untitled' }.must_equal '<title>Untitled</title>'
+    expect(Markababy.capture { title 'Untitled' }).to eq('<title>Untitled</title>')
   end
 
   it 'escapes content' do
-    Markababy.capture { h1 'Apples & Oranges' }.must_equal '<h1>Apples &amp; Oranges</h1>'
+    expect(Markababy.capture { h1 'Apples & Oranges' }).to eq('<h1>Apples &amp; Oranges</h1>')
   end
 
   it 'renders tags with an attribute hash' do
     output = Markababy.capture { input :type => :text, :size => 40 }
 
-    output.must_match(/<input .+>/)
-    output.must_match(/ type="text"/)
-    output.must_match(/ size="40"/)
+    expect(output).to match(/<input .+>/)
+    expect(output).to match(/ type="text"/)
+    expect(output).to match(/ size="40"/)
   end
 
   it 'renders tags with an attribute array' do
-    Markababy.capture { input [{:type => :text}, :disabled] }.must_equal '<input type="text" disabled>'
+    expect(Markababy.capture { input [{:type => :text}, :disabled] }).to eq('<input type="text" disabled>')
   end
 
   it 'renders tags with attributes and content' do
-    Markababy.capture { div 'O hai', :class => 'name' }.must_equal '<div class="name">O hai</div>'
+    expect(Markababy.capture { div 'O hai', :class => 'name' }).to eq('<div class="name">O hai</div>')
   end
 
   it 'renders nested tags' do
-    Markababy.capture { h1 { span 'Chunky bacon!' } }.must_equal '<h1><span>Chunky bacon!</span></h1>'
+    expect(Markababy.capture { h1 { span 'Chunky bacon!' } }).to eq('<h1><span>Chunky bacon!</span></h1>')
   end
 
   it 'provides an option for specifying the output target' do
@@ -47,38 +45,38 @@ describe 'Markababy' do
 
     Markababy.markup(:output => output) { hr }
 
-    output.join.must_equal '<hr>'
+    expect(output.join).to eq('<hr>')
   end
 
   it 'provides an option for specifying the method lookup context' do
     output = Markababy.capture(:context => ExampleContext.new) { h1 baconize('Super chunky') }
 
-    output.must_equal '<h1>Super chunky bacon!</h1>'
+    expect(output).to eq('<h1>Super chunky bacon!</h1>')
   end
 
   it 'provides an method for rendering text content inside a tag' do
     output = Markababy.capture { h1 { text 'Hello '; strong 'World' } }
 
-    output.must_equal '<h1>Hello <strong>World</strong></h1>'
+    expect(output).to eq('<h1>Hello <strong>World</strong></h1>')
   end
 
   it 'does not escape content that has been marked as html safe' do
-    Markababy.capture { text 'Hello&nbsp;World'.html_safe }.must_equal 'Hello&nbsp;World'
+    expect(Markababy.capture { text 'Hello&nbsp;World'.html_safe }).to eq 'Hello&nbsp;World'
 
     output = Markababy.capture { h1 'Hello <strong>World</strong>'.html_safe }
 
-    output.must_equal '<h1>Hello <strong>World</strong></h1>'
+    expect(output).to eq('<h1>Hello <strong>World</strong></h1>')
   end
 
   it 'provides an option for including a doctype declaration' do
     output = Markababy.capture(:doctype => true) { html { body { p 'INSERT CONTENT HERE' } } }
 
-    output.must_equal "<!DOCTYPE html>\n<html><body><p>INSERT CONTENT HERE</p></body></html>"
+    expect(output).to eq("<!DOCTYPE html>\n<html><body><p>INSERT CONTENT HERE</p></body></html>")
   end
 
   it 'provides access to constants' do
     Something = Class.new
 
-    Markababy.capture { h1 Something }.must_equal('<h1>Something</h1>')
+    expect(Markababy.capture { h1 Something }).to eq('<h1>Something</h1>')
   end
 end
