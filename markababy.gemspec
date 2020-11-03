@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name = 'markababy'
-  s.version = '1.3.0'
+  s.version = '1.3.1'
   s.license = 'LGPL-3.0'
   s.platform = Gem::Platform::RUBY
   s.authors = ['Tim Craft']
