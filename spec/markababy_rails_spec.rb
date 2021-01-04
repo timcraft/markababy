@@ -20,6 +20,6 @@ RSpec.describe 'Rendering the DummyController index template' do
 
     output = '<html><head><title>Controller says hello!</title></head><body><p>12,345,678</p></body></html>'
 
-    expect(DummyController.render(file: 'index', assigns: assigns)).to eq(output)
+    expect(DummyController.render(template: 'index', assigns: assigns)).to eq(output)
   end
 end

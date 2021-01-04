@@ -3,7 +3,7 @@ module Markababy
     def initialize(controller)
       @controller = controller
 
-      @ivars = (@controller.instance_variables - @controller.class.new.instance_variables).map(&:to_sym)
+      @ivars = @controller.instance_variables.map(&:to_sym)
     end
 
     def respond_to_missing?(sym, include_private = false)
