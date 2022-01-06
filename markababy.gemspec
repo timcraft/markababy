@@ -6,7 +6,7 @@ Gem::Specification.new do |s|
   s.authors = ['Tim Craft']
   s.email = ['mail@timcraft.com']
   s.homepage = 'https://github.com/timcraft/markababy'
-  s.description = 'Markaby\'s little sister'
+  s.description = 'Ruby gem for generating HTML'
   s.summary = 'See description'
   s.files = Dir.glob('lib/**/*.rb') + %w(LICENSE.txt README.md markababy.gemspec)
   s.required_ruby_version = '>= 1.9.3'

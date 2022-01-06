@@ -3,7 +3,7 @@
 [![Gem Version](https://badge.fury.io/rb/markababy.svg)](https://badge.fury.io/rb/markababy) [![Test Status](https://github.com/timcraft/markababy/actions/workflows/test.yml/badge.svg)](https://github.com/timcraft/markababy/actions/workflows/test.yml)
 
 
-Markaby's little sister. A small library for writing HTML in Ruby.
+Ruby gem for generating HTML.
 
 
 ## Installation
